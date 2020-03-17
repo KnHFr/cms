@@ -1,32 +1,34 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}{{ title.title }}{% endblock %}
+{% block title %}{{ title }}{% endblock %}
 
 {% block body %}
 
+
+
 {# Titre de l'onglet de page #}
-{% if title.title is not empty %}
+{% if title is not empty %}
 {% else %}
     <p>Ajouter un titre d'onglet</p>
 {% endif %}
 
 {# Image du header #}
-{% if header.headerPicture is not empty %}
-    <img src='{{ header.headerPicture }}'>
+{% if header is not empty %}
+    <img src='{{ header }}'>
 {% else %}
     <p>Ajouter une image pour le Header</p>
 {% endif %}
 
 {# Titre h1 #}
-{% if h1.h1 is not empty %}
-    <h1>{{ h1.h1 }}</h1>
+{% if h1 is not empty %}
+    <h1>{{ h1 }}</h1>
 {% else %}
     <h1>Ajouter un titre principal h1</h1>
 {% endif %}
 
 {# Texte de présentation #}
-{% if presentationText.presentationText is not empty %}
-    <p>{{ presentationText.presentationText }}</p>
+{% if presentationText is not empty %}
+    <p>{{ presentationText }}</p>
 {% else %}
     <p>Ajouter un texte de présentation</p>
 {% endif %}

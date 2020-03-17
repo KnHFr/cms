@@ -2,15 +2,9 @@
 
 namespace App\Controller\Backend;
 
-use App\Form\Parameter\H1Type;
-use App\Form\Parameter\TitleType;
-use App\Form\Parameter\HeaderType;
-use App\Form\Parameter\PresentationTextType;
 use App\Service\Parameter;
-use App\Entity\Parameter\H1;
-use App\Entity\Parameter\Title;
-use App\Entity\Parameter\Header;
-use App\Entity\Parameter\PresentationText;
+use App\Entity\Parameter\Head;
+use App\Form\Parameter\HeadType;
 use App\Repository\ParameterRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -33,118 +27,37 @@ class ParameterController extends AbstractController
     }
 
     /**
-     * @Route("/title", name="title")
+     * @Route("/head", name="head")
      */
-    public function Title(Parameter $parameter, Request $request, EntityManagerInterface $em)
+    public function Head(Parameter $parameter, Request $request, EntityManagerInterface $em)
     {
-        $titleData = new Title();
+        $headData = new Head();
         //on recupere les données existante
-        $titleData->title = $parameter->get('title');
+        $headData->title = $parameter->get('title');
+        $headData->headerPicture = $parameter->get('headerPicture');
+        $headData->h1 = $parameter->get('h1');
+        $headData->presentationText = $parameter->get('presentationText');
         //creation du formulaire
-        $form = $this->createForm(TitleType::class, $titleData);
+        $form = $this->createForm(HeadType::class, $headData);
         $form->handleRequest($request);
         //si valid, on set les données du formulaire
         if ($form->isSubmitted() && $form->isValid()) {
-            $parameter->set('title', $titleData->title);
+            $parameter->set("title", $headData->title);
+            $parameter->set("headerPicture", $headData->headerPicture);
+            $parameter->set("h1", $headData->h1);
+            $parameter->set("presentationText", $headData->presentationText);
 
             $em->flush();
             //flash confirmation de sauvegarde
             $this->addFlash(
                 'confirmation',
-                "Le titre de l'onglet de page à été sauvegardé."
+                "Le head à été sauvegardé."
             );
-            return $this->redirectToRoute('backend_parameter_title');
+            return $this->redirectToRoute('backend_parameter_head');
         };
-        return $this->render('backend/parameter/title.html.twig', [
-            'title' => $titleData,
-            'titleForm' => $form->createView()
-        ]);
-    }
-
-    /**
-     * @Route("/header", name="headerPicture")
-     */
-    public function Header(Parameter $parameter, Request $request, EntityManagerInterface $em)
-    {
-        $headerData = new Header();
-        //on recupere les données existante
-        $headerData->headerPicture = $parameter->get('headerPicture');
-        //creation du formulaire
-        $form = $this->createForm(HeaderType::class, $headerData);
-        $form->handleRequest($request);
-        //si valid, on set les données du formulaire
-        if ($form->isSubmitted() && $form->isValid()) {
-            $parameter->set("headerPicture", $headerData->headerPicture);
-
-            $em->flush();
-            //flash confirmation de sauvegarde
-            $this->addFlash(
-                'confirmation',
-                "Le header à été sauvegardé."
-            );
-            return $this->redirectToRoute('backend_parameter_headerPicture');
-        };
-        return $this->render('backend/parameter/header.html.twig', [
-            'header' => $headerData,
-            'headerForm' => $form->createView()
-        ]);
-    }
-
-    /**
-     * @Route("/h1", name="h1")
-     */
-    public function H1(Parameter $parameter, Request $request, EntityManagerInterface $em)
-    {
-        $h1Data = new H1();
-        //on recupere les données existante
-        $h1Data->h1 = $parameter->get('h1');
-        //creation du formulaire
-        $form = $this->createForm(H1Type::class, $h1Data);
-        $form->handleRequest($request);
-        //si valid, on set les données du formulaire
-        if ($form->isSubmitted() && $form->isValid()) {
-            $parameter->set("h1", $h1Data->h1);
-
-            $em->flush();
-            //flash confirmation de sauvegarde
-            $this->addFlash(
-                'confirmation',
-                "Le titre h1 à été sauvegardé."
-            );
-            return $this->redirectToRoute('backend_parameter_h1');
-        };
-        return $this->render('backend/parameter/h1.html.twig', [
-            'h1' => $h1Data,
-            'h1Form' => $form->createView()
-        ]);
-    }
-
-    /**
-     * @Route("/presentationText", name="presentationText")
-     */
-    public function PresentationText(Parameter $parameter, Request $request, EntityManagerInterface $em)
-    {
-        $presentationTextData = new PresentationText();
-        //on recupere les données existante
-        $presentationTextData->presentationText = $parameter->get('presentationText');
-        //creation du formulaire
-        $form = $this->createForm(PresentationTextType::class, $presentationTextData);
-        $form->handleRequest($request);
-        //si valid, on set les données du formulaire
-        if ($form->isSubmitted() && $form->isValid()) {
-            $parameter->set("presentationText", $presentationTextData->presentationText);
-
-            $em->flush();
-            //flash confirmation de sauvegarde
-            $this->addFlash(
-                'confirmation',
-                "Le texte de présentation à été sauvegardé."
-            );
-            return $this->redirectToRoute('backend_parameter_presentationText');
-        };
-        return $this->render('backend/parameter/presentationText.html.twig', [
-            'presentationText' => $presentationTextData,
-            'presentationTextForm' => $form->createView()
+        return $this->render('backend/parameter/head.html.twig', [
+            'head' => $headData,
+            'headForm' => $form->createView()
         ]);
     }
 }

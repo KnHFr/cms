@@ -1,11 +1,2 @@
-{% for parameter in parameters %}
-    <a href="{{ path('backend_parameter_' ~ parameter.keyIndex) }}">{{ parameter.keyIndex }}</a>
-{% endfor %}
-
-<br>
-
-<a href='{{ path('backend_parameter_title') }}'>Title</a>
-<a href='{{ path('backend_parameter_headerPicture') }}'>HeaderPicture</a>
-<a href='{{ path('backend_parameter_h1') }}'>H1</a>
-<a href='{{ path('backend_parameter_presentationText') }}'>PresentationText</a>
+<a href='{{ path('backend_parameter_head') }}'>Head</a>
 <a href='{{ path('backend_article_index') }}'>Article</a>

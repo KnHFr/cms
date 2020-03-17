@@ -2,7 +2,10 @@
 
 namespace App\Entity\Parameter;
 
-class PresentationText
+class Head
 {
+    public $title;
+    public $headerPicture;
+    public $h1;
     public $presentationText;
 }
