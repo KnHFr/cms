@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Entity;
+namespace App\Entity\Parameter;
 
 use Doctrine\ORM\Mapping as ORM;
 
@@ -14,17 +14,17 @@ class Parameter
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
      */
-    private $id;
+    protected $id;
 
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $keyIndex;
+    protected $keyIndex;
 
     /**
      * @ORM\Column(type="text")
      */
-    private $value;
+    protected $value;
 
     public function getId(): ?int
     {

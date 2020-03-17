@@ -2,7 +2,7 @@
 //
 namespace App\Service;
 
-use App\Entity\Parameter as EntityParameter;
+use App\Entity\Parameter\Parameter as EntityParameter;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
