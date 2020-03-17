@@ -7,6 +7,7 @@ use App\Entity\Parameter\H1;
 use App\Entity\Parameter\Title;
 use App\Entity\Parameter\Header;
 use App\Entity\Parameter\PresentationText;
+use App\Repository\ArticleRepository;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
@@ -15,7 +16,7 @@ class MainController extends AbstractController
     /**
      * @Route("/", name="main")
      */
-    public function index(Parameter $parameter)
+    public function index(Parameter $parameter, ArticleRepository $articleRepository)
     {
         $titleData = new Title();
         $titleData->title = $parameter->get('title');
@@ -28,12 +29,14 @@ class MainController extends AbstractController
 
         $presentationTextData = new PresentationText();
         $presentationTextData->presentationText = $parameter->get('presentationText');
+
+
         return $this->render('main/index.html.twig', [
             'title' => $titleData,
             'header' => $headerData,
             'h1' => $h1Data,
             'presentationText' => $presentationTextData,
-            'controller_name' => 'MainController',
+            'articles' => $articleRepository->findAll()
         ]);
     }
 }
