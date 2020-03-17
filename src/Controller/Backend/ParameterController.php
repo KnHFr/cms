@@ -9,8 +9,10 @@ use App\Service\Parameter;
 use App\Entity\Parameter\H1;
 use App\Entity\Parameter\Title;
 use App\Entity\Parameter\Header;
+use App\Form\PresentationTextType;
 use App\Repository\ParameterRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use App\Entity\Parameter\PresentationText;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -60,6 +62,35 @@ class ParameterController extends AbstractController
     }
 
     /**
+     * @Route("/header", name="headerPicture")
+     */
+    public function Header(Parameter $parameter, Request $request, EntityManagerInterface $em)
+    {
+        $headerData = new Header();
+        //on recupere les données existante
+        $headerData->headerPicture = $parameter->get('headerPicture');
+        //creation du formulaire
+        $form = $this->createForm(HeaderType::class, $headerData);
+        $form->handleRequest($request);
+        //si valid, on set les données du formulaire
+        if ($form->isSubmitted() && $form->isValid()) {
+            $parameter->set("headerPicture", $headerData->headerPicture);
+
+            $em->flush();
+            //flash confirmation de sauvegarde
+            $this->addFlash(
+                'confirmation',
+                "Le header à été sauvegardé."
+            );
+            return $this->redirectToRoute('backend_parameter_headerPicture');
+        };
+        return $this->render('backend/parameter/header.html.twig', [
+            'header' => $headerData,
+            'headerForm' => $form->createView()
+        ]);
+    }
+
+    /**
      * @Route("/h1", name="h1")
      */
     public function H1(Parameter $parameter, Request $request, EntityManagerInterface $em)
@@ -89,31 +120,31 @@ class ParameterController extends AbstractController
     }
 
     /**
-     * @Route("/header", name="headerPicture")
+     * @Route("/presentationText", name="presentationText")
      */
-    public function Header(Parameter $parameter, Request $request, EntityManagerInterface $em)
+    public function PresentationText(Parameter $parameter, Request $request, EntityManagerInterface $em)
     {
-        $headerData = new Header();
+        $presentationTextData = new PresentationText();
         //on recupere les données existante
-        $headerData->headerPicture = $parameter->get('headerPicture');
+        $presentationTextData->presentationText = $parameter->get('presentationText');
         //creation du formulaire
-        $form = $this->createForm(HeaderType::class, $headerData);
+        $form = $this->createForm(PresentationTextType::class, $presentationTextData);
         $form->handleRequest($request);
         //si valid, on set les données du formulaire
         if ($form->isSubmitted() && $form->isValid()) {
-            $parameter->set("headerPicture", $headerData->headerPicture);
+            $parameter->set("presentationText", $presentationTextData->presentationText);
 
             $em->flush();
             //flash confirmation de sauvegarde
             $this->addFlash(
                 'confirmation',
-                "Le header à été sauvegardé."
+                "Le texte de présentation à été sauvegardé."
             );
-            return $this->redirectToRoute('backend_parameter_headerPicture');
+            return $this->redirectToRoute('backend_parameter_presentationText');
         };
-        return $this->render('backend/parameter/header.html.twig', [
-            'header' => $headerData,
-            'headerForm' => $form->createView()
+        return $this->render('backend/parameter/presentationText.html.twig', [
+            'presentationText' => $presentationTextData,
+            'presentationTextForm' => $form->createView()
         ]);
     }
 }

@@ -24,4 +24,11 @@
     <h1>Ajouter un titre principal h1</h1>
 {% endif %}
 
+{# Texte de présentation #}
+{% if presentationText.presentationText is not empty %}
+    <p>{{ presentationText.presentationText }}</p>
+{% else %}
+    <p>Ajouter un texte de présentation</p>
+{% endif %}
+
 {% endblock %}
