@@ -1,25 +1,25 @@
 <?php
 
-namespace App\Form;
+namespace App\Form\Parameter;
 
+use App\Entity\Parameter\H1;
 use Symfony\Component\Form\AbstractType;
-use App\Entity\Parameter\PresentationText;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 
-class PresentationTextType extends AbstractType
+class H1Type extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('presentationText')
+        $builder->add('h1')
         ;
     }
 
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => PresentationText::class,
+            'data_class' => H1::class,
         ]);
     }
 }

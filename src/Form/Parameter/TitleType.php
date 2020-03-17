@@ -1,25 +1,25 @@
 <?php
 
-namespace App\Form;
+namespace App\Form\Parameter;
 
-use App\Entity\Parameter\Header;
+use App\Entity\Parameter\Title;;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 
-class HeaderType extends AbstractType
+class TitleType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('headerPicture')
+        $builder->add('title')
         ;
     }
 
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => Header::class,
+            'data_class' => Title::class,
         ]);
     }
 }

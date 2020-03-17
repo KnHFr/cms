@@ -1,25 +1,25 @@
 <?php
 
-namespace App\Form;
+namespace App\Form\Parameter;
 
-use App\Entity\Parameter\H1;
+use App\Entity\Parameter\Header;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 
-class H1Type extends AbstractType
+class HeaderType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('h1')
+        $builder->add('headerPicture')
         ;
     }
 
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => H1::class,
+            'data_class' => Header::class,
         ]);
     }
 }
