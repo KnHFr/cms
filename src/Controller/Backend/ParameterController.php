@@ -24,7 +24,7 @@ class ParameterController extends AbstractController
      */
     public function index()
     {
-        return $this->render('parameter/index.html.twig', [
+        return $this->render('backend/parameter/index.html.twig', [
             'controller_name' => 'ParameterController',
         ]);
     }
