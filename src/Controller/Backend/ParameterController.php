@@ -9,6 +9,7 @@ use App\Service\Parameter;
 use App\Entity\Parameter\H1;
 use App\Entity\Parameter\Title;
 use App\Entity\Parameter\Header;
+use App\Repository\ParameterRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
@@ -22,10 +23,10 @@ class ParameterController extends AbstractController
     /**
      * @Route("/", name="parameter")
      */
-    public function index()
+    public function index(ParameterRepository $parameterRepository)
     {
         return $this->render('backend/parameter/index.html.twig', [
-            'controller_name' => 'ParameterController',
+            'parameters' => $parameterRepository->findAll(),
         ]);
     }
 
@@ -88,7 +89,7 @@ class ParameterController extends AbstractController
     }
 
     /**
-     * @Route("/header", name="header")
+     * @Route("/header", name="headerPicture")
      */
     public function Header(Parameter $parameter, Request $request, EntityManagerInterface $em)
     {
