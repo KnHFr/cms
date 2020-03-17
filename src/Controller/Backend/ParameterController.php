@@ -109,7 +109,7 @@ class ParameterController extends AbstractController
                 'confirmation',
                 "Le header à été sauvegardé."
             );
-            return $this->redirectToRoute('backend_parameter_header');
+            return $this->redirectToRoute('backend_parameter_headerPicture');
         };
         return $this->render('backend/parameter/header.html.twig', [
             'header' => $headerData,
