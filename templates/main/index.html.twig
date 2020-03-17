@@ -5,11 +5,25 @@
 {% block body %}
 
 {% if title.title is not empty %}
+
     <p>{{ title.title }}</p>
+
 {% else %}
 
 <p>Commencer par ajouter un titre d'onglet</p>
 
 {% endif %}
+
+{% if h1.h1 is not empty %}
+
+    <h1>{{ h1.h1 }}</h1>
+
+{% else %}
+
+<h1>Commencer par ajouter un titre principal h1</h1>
+
+{% endif %}
+
+
 
 {% endblock %}
