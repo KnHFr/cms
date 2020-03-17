@@ -4,26 +4,24 @@
 
 {% block body %}
 
+{# Titre de l'onglet de page #}
 {% if title.title is not empty %}
-
-    <p>{{ title.title }}</p>
-
 {% else %}
-
-<p>Commencer par ajouter un titre d'onglet</p>
-
+    <p>Ajouter un titre d'onglet</p>
 {% endif %}
 
+{# Image du header #}
+{% if header.headerPicture is not empty %}
+    <img src='{{ header.headerPicture }}'>
+{% else %}
+    <p>Ajouter une imgae pour le Header</p>
+{% endif %}
+
+{# Titre h1 #}
 {% if h1.h1 is not empty %}
-
     <h1>{{ h1.h1 }}</h1>
-
 {% else %}
-
-<h1>Commencer par ajouter un titre principal h1</h1>
-
+    <h1>Ajouter un titre principal h1</h1>
 {% endif %}
-
-
 
 {% endblock %}

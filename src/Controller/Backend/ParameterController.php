@@ -4,9 +4,11 @@ namespace App\Controller\Backend;
 
 use App\Form\H1Type;
 use App\Form\TitleType;
+use App\Form\HeaderType;
 use App\Service\Parameter;
 use App\Entity\Parameter\H1;
 use App\Entity\Parameter\Title;
+use App\Entity\Parameter\Header;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
@@ -82,6 +84,35 @@ class ParameterController extends AbstractController
         return $this->render('backend/parameter/h1.html.twig', [
             'h1' => $h1Data,
             'h1Form' => $form->createView()
+        ]);
+    }
+
+    /**
+     * @Route("/header", name="header")
+     */
+    public function Header(Parameter $parameter, Request $request, EntityManagerInterface $em)
+    {
+        $headerData = new Header();
+        //on recupere les données existante
+        $headerData->headerPicture = $parameter->get('headerPicture');
+        //creation du formulaire
+        $form = $this->createForm(HeaderType::class, $headerData);
+        $form->handleRequest($request);
+        //si valid, on set les données du formulaire
+        if ($form->isSubmitted() && $form->isValid()) {
+            $parameter->set("headerPicture", $headerData->headerPicture);
+
+            $em->flush();
+            //flash confirmation de sauvegarde
+            $this->addFlash(
+                'confirmation',
+                "Le header à été sauvegardé."
+            );
+            return $this->redirectToRoute('backend_parameter_header');
+        };
+        return $this->render('backend/parameter/header.html.twig', [
+            'header' => $headerData,
+            'headerForm' => $form->createView()
         ]);
     }
 }
