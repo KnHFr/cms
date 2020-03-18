@@ -1,12 +1,66 @@
 /* HEADER */
 
-#imgHeader {
+body {
+    background-color: dimgray;
+}
+
+
+
+
+/* #header {
+
+} */
+
+#headerPicture {
+    object-fit:cover;
+    width: 100vw;
+    height: 60vh;
+    position: absolute;
+}
+
+#h1 {
+    font-family: 'Robotto';
+    font-weight: bold;
+    text-align: center;
+    letter-spacing: 0.1rem;
+    position: relative;
+    color: beige;
+    font-size: 4.5rem;
+}
+
+
+/* MAIN */
+
+#main {
+    position: relative;
+    margin-top: 60vh;
+    margin-bottom: 2vh;
+}
+
+#presentationText {
+    font-size: 1.25rem;
+    text-align: justify;
+}
+
+.article h2 {
+    color: floralwhite;
+    font-size: 2.5rem;
+}
+
+.article img {
     object-fit:cover;
     width: 100vw;
     height: 60vh;
 }
 
-#mainHeading {
-    font-family: 'Robotto';
-    font-weight: bold;
+.article p {
+    color: floralwhite;
+    font-size: 1.25rem;
+}
+
+
+/* FOOTER */
+
+footer {
+    /* display: none; */
 }
