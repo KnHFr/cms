@@ -1,20 +1,95 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello MainController!{% endblock %}
+{% block title %}{{ title }}{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ '/var/www/html/developpment/cms/src/Controller/MainController.php'|file_link(0) }}">src/Controller/MainController.php</a></code></li>
-        <li>Your template at <code><a href="{{ '/var/www/html/developpment/cms/templates/main/index.html.twig'|file_link(0) }}">templates/main/index.html.twig</a></code></li>
-    </ul>
-</div>
+<body>
+
+
+<header>
+
+    {# BODY #}
+
+    {# Titre de l'onglet de page #}
+    {% if title is not empty %}
+    {% else %}
+        <p>Ajouter un titre d'onglet</p>
+    {% endif %}
+
+    {# Image du header #}
+    {% if header is not empty %}
+        <img src='{{ header }}'>
+    {% else %}
+        <p>Ajouter une image pour le Header</p>
+    {% endif %}
+
+</header>
+
+
+    {# Titre h1 #}
+    {% if h1 is not empty %}
+        <h1>{{ h1 }}</h1>
+    {% else %}
+        <p>Ajouter un titre principal h1</p>
+    {% endif %}
+
+    {# Texte de présentation #}
+    {% if presentationText is not empty %}
+        <p>{{ presentationText }}</p>
+    {% else %}
+        <p>Ajouter un texte de présentation</p>
+    {% endif %}
+
+    {# Articles #}
+    {% if articles is not empty %}
+        {% for article in articles %}
+            <h2>{{ article.title }}</h2>
+            <img src='{{ article.picturePath}}'>
+            <p>{{ article.text }}</p>
+        {% endfor %}
+    {% else %}
+        <p>Ajouter des articles</p>
+    {% endif %}
+
+
+<footer>
+
+    {# FOOTER #}
+
+    {# Contact #}
+    {% if contact is not empty %}
+        <p>{{ contact }}</p>
+    {% else %}
+        <p>Ajouter un contact</p>
+    {% endif %}
+
+    {# Réseaux Sociaux #}
+    {% if socialNetwork is not empty %}
+        <p>{{ socialNetwork }}</p>
+    {% else %}
+        <p>Ajouter un réseaux social</p>
+    {% endif %}
+
+    {# A propos du site #}
+    {% if aboutUs is not empty %}
+        <p>{{ aboutUs }}</p>
+    {% else %}
+        <p>Ajouter un texte a propos du site</p>
+    {% endif %}
+
+    {# A propos du développeur #}
+    {% if aboutF is not empty %}
+        <p>{{ aboutF }}</p>
+    {% else %}
+        <p>Ajouter un texte a propos du développeur</p>
+    {% endif %}
+
+</footer>
+
+
+</body>
+
+
 {% endblock %}
