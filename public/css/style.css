@@ -1,1 +1,12 @@
 /* HEADER */
+
+#imgHeader {
+    object-fit:cover;
+    width: 100vw;
+    height: 60vh;
+}
+
+#mainHeading {
+    font-family: 'Robotto';
+    font-weight: bold;
+}

@@ -20,7 +20,7 @@
 
     {# Image du header #}
     {% if header is not empty %}
-        <img src='{{ header }}'>
+        <img id="imgHeader" src="{{ header }}">
     {% else %}
         <p>Ajouter une image pour le Header</p>
     {% endif %}
@@ -30,7 +30,7 @@
 
     {# Titre h1 #}
     {% if h1 is not empty %}
-        <h1>{{ h1 }}</h1>
+        <h1 id="mainHeading">{{ h1 }}</h1>
     {% else %}
         <p>Ajouter un titre principal h1</p>
     {% endif %}
