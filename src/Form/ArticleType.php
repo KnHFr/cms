@@ -6,6 +6,7 @@ use App\Entity\Article;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 
 class ArticleType extends AbstractType
 {
@@ -13,7 +14,9 @@ class ArticleType extends AbstractType
     {
         $builder
             ->add('title')
-            ->add('picturePath')
+            ->add('picturePath', FileType::class, [
+                'label' => 'Selectionner l\'Image principale de l\'Article'
+            ])
             ->add('text')
         ;
     }

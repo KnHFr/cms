@@ -35,6 +35,21 @@ class ArticleController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $picture =  $form->get('picturePath')->getData();
+            $originalImagename = pathinfo($picture->getClientOriginalName(), PATHINFO_FILENAME);
+            $safeImagename = transliterator_transliterate('Any-Latin; Latin-ASCII; [^A-Za-z0-9_] remove; Lower()', $originalImagename);
+            $newImageName = $safeImagename.'-'.uniqid().'.'.$picture->guessExtension();
+            $picture->move(
+                $this->getParameter('upload_picture_directory'),
+                $newImageName
+            );
+            $article->setPicturePath($newImageName);
+            $this->getDoctrine()->getManager()->flush();
+            $this->addFlash(
+                'confirmation',
+                "L'Article' été sauvegardé"
+            );
+
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($article);
             $entityManager->flush();

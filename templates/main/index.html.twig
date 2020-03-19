@@ -46,7 +46,7 @@
     {% if articles is not empty %}
         {% for article in articles %}
             <h2>{{ article.title }}</h2>
-            <img src='{{ article.picturePath}}'>
+            <img src='{{asset('uploads/pictures/' ~ article.picturePath)}}'>
             <p>{{ article.text }}</p>
         {% endfor %}
     {% else %}
