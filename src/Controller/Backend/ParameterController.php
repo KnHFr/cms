@@ -53,7 +53,7 @@ class ParameterController extends AbstractController
             //flash confirmation de sauvegarde
             $this->addFlash(
                 'confirmation',
-                "Le head à été sauvegardé."
+                "L'En-tête à été sauvegardé."
             );
             return $this->redirectToRoute('backend_parameter_head');
         };
@@ -88,7 +88,7 @@ class ParameterController extends AbstractController
             //flash confirmation de sauvegarde
             $this->addFlash(
                 'confirmation',
-                "Le Foot à été sauvegardé."
+                "Le Pied de page à été sauvegardé."
             );
             return $this->redirectToRoute('backend_parameter_foot');
         };
