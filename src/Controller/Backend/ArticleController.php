@@ -3,12 +3,15 @@
 namespace App\Controller\Backend;
 
 use App\Entity\Article;
+use App\Entity\Picture;
 use App\Form\ArticleType;
 use App\Repository\ArticleRepository;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\File\Exception\FileException;
 
 /**
  * @Route("/backend/article", name="backend_")
@@ -28,7 +31,7 @@ class ArticleController extends AbstractController
     /**
      * @Route("/new", name="article_new", methods={"GET","POST"})
      */
-    public function new(Request $request): Response
+    public function new(Request $request, EntityManagerInterface $em): Response
     {
         $article = new Article();
         $form = $this->createForm(ArticleType::class, $article);
@@ -44,10 +47,44 @@ class ArticleController extends AbstractController
                 $newImageName
             );
             $article->setPicturePath($newImageName);
+
+            // parcours $picturefiles
+            // si pas d'image envoyé, on garde les images précédentes
+            $images = $form->get('pictures')->getData();
+            // dd($image);
+                //on parcours le tableau $image, pour chaque on transforme son nom
+            foreach($images as $i)
+            {
+                if ($i) {
+                $originalImagename = pathinfo($i->getClientOriginalName(), PATHINFO_FILENAME);
+                $safeImagename = transliterator_transliterate('Any-Latin; Latin-ASCII; [^A-Za-z0-9_] remove; Lower()', $originalImagename);
+                $newImagename = $safeImagename.'-'.uniqid().'.'.$i->guessExtension();
+                //on déplace le fichier dans le bon dossier
+                    try {
+                        $i->move(
+                        $this->getParameter('upload_picture_directory'), $newImagename
+                        );
+                        //
+                // dd($event->picturefiles);
+                        //creation d'une nouvelle image avec toutes ses données
+                        $picture = new Picture();
+                        $picture->setPath($newImagename);
+                        $picture->setArticle($article);
+                        $em->persist($picture);
+                        // dd($picture);
+                        //on enregistre le nom dans event
+                        $article->addPicture($picture);
+                        
+                
+                        } catch (FileException $e) {
+
+                        }
+                }
+            }
             $this->getDoctrine()->getManager()->flush();
             $this->addFlash(
                 'confirmation',
-                "L'Article' été sauvegardé"
+                "L'Article' à été sauvegardé"
             );
 
             $entityManager = $this->getDoctrine()->getManager();

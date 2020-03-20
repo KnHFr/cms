@@ -7,6 +7,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 
 class ArticleType extends AbstractType
 {
@@ -18,6 +19,11 @@ class ArticleType extends AbstractType
                 'label' => 'Selectionner l\'Image principale de l\'Article'
             ])
             ->add('text')
+            ->add('pictures', CollectionType::class, [
+                'entry_type' => PictureType::class,
+                'required'   => false,
+                'label' => 'Selectionner la/les Image(s) de l\'Articles'
+            ])
         ;
     }
 
