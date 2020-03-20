@@ -6,16 +6,25 @@ use App\Entity\Parameter\Foot;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 
 
 class FootType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('contact');
-        $builder->add('socialNetwork');
-        $builder->add('aboutUs');
-        $builder->add('aboutF');
+        $builder->add('contact', TextType::class, [
+            'label' => 'Vos informations de Contact'
+        ]);
+        $builder->add('socialNetwork', TextType::class, [
+            'label' => 'Votre lien de Réseau Social'
+        ]);
+        $builder->add('aboutUs', TextType::class, [
+            'label' => 'À Propos du site'
+        ]);
+        $builder->add('aboutF', TextType::class, [
+            'label' => 'À Propos du créateur du site'
+        ]);
     }
 
     public function configureOptions(OptionsResolver $resolver)

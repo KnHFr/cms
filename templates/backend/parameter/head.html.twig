@@ -1,35 +1,42 @@
-{% extends 'base.html.twig' %}
+{% extends '/backend/base_backend.html.twig' %}
 
-{% block title %}{% endblock %}
+{% block title %}Gestion de l'En-tête{% endblock %}
 
 {% block body %}
 
-{% for message in app.flashes('confirmation') %}
-<div class="container-fluid mt-5">
-    <div class="row">
-        <div class="col-12">
-            <div class="alert alert-success" role="alert" style="text-align: center;">
-                {{ message }}
-            </div>
-        </div>
-    </div>
-</div>
-{% endfor %}
+{{  render(controller('App\\Controller\\Backend\\MainController::navBackend'))}}
 
-{% for message in app.flashes('error') %}
-<div class="container-fluid mt-5">
-    <div class="row">
-        <div class="col-12">
-            <div class="alert alert-danger" role="alert" style="text-align: center;">
-                {{ message }}
-            </div>
-        </div>
-    </div>
-</div>
-{% endfor %}
+    <h1>Gestion de l'En-tête</h1>
 
-{{ form_start(headForm) }}
-    <button class="btn text-white">{{ button_label|default('Sauvergarder') }}</button>
-{{ form_end(headForm) }}
+        <div class="col-10 bg-secondary">
+            {% for message in app.flashes('confirmation') %}
+            <div class="container-fluid mt-5">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="alert alert-success" role="alert" style="text-align: center;">
+                            {{ message }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+
+            {% for message in app.flashes('error') %}
+            <div class="container-fluid mt-5">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="alert alert-danger" role="alert" style="text-align: center;">
+                            {{ message }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+
+            {{ form_start(headForm) }}
+                <button class="btn text-white">{{ button_label|default('Sauvergarder') }}</button>
+            {{ form_end(headForm) }}
+
+        </div>
 
 {% endblock %}

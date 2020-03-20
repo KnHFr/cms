@@ -1,0 +1,35 @@
+{% extends '/backend/base_backend.html.twig' %}
+
+{% block title %}Article{% endblock %}
+
+{% block body %}
+
+{{  render(controller('App\\Controller\\Backend\\MainController::navBackend'))}}
+
+    <h1>Article</h1>
+
+<div class="col-10 bg-secondary">
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Titre</th>
+                <td>{{ article.title }}</td>
+            </tr>
+            <tr>
+                <th>Chemin de l'image</th>
+                <td>{{ article.picturePath }}</td>
+            </tr>
+            <tr>
+                <th>Texte</th>
+                <td>{{ article.text }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('backend_article_index') }}">revenir à la liste</a>
+
+    <a href="{{ path('backend_article_edit', {'id': article.id}) }}">éditer</a>
+
+    {{ include('backend/article/_delete_form.html.twig') }}
+</div>
+{% endblock %}

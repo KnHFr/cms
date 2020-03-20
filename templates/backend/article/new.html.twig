@@ -1,0 +1,16 @@
+{% extends '/backend/base_backend.html.twig' %}
+
+{% block title %}Nouvel Article{% endblock %}
+
+{% block body %}
+
+<div class="col-10 bg-secondary">
+    {{  render(controller('App\\Controller\\Backend\\MainController::navBackend'))}}
+
+        <h1>Créer un nouvel Article</h1>
+
+        {{ include('backend/article/_form.html.twig') }}
+
+        <a href="{{ path('backend_article_index') }}">revenir à la liste</a>
+</div>
+{% endblock %}

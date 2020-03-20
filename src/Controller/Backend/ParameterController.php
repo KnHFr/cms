@@ -31,7 +31,7 @@ class ParameterController extends AbstractController
     /**
      * @Route("/head", name="head")
      */
-    public function Head(Parameter $parameter, Request $request, EntityManagerInterface $em)
+    public function head(Parameter $parameter, Request $request, EntityManagerInterface $em)
     {
         $headData = new Head();
         //on recupere les données existante
@@ -66,7 +66,7 @@ class ParameterController extends AbstractController
     /**
      * @Route("/foot", name="foot")
      */
-    public function Foot(Parameter $parameter, Request $request, EntityManagerInterface $em)
+    public function foot(Parameter $parameter, Request $request, EntityManagerInterface $em)
     {
         $footData = new Foot();
         //on recupere les données existante
