@@ -70,34 +70,44 @@
 <footer>
 
     {# FOOTER #}
-    {# Contact #}
-    {% if contact is not empty %}
-        <p>{{ contact }}</p>
-    {% else %}
-        <p>Ajouter un contact</p>
-    {% endif %}
 
-    {# Réseaux Sociaux #}
-    {% if socialNetwork is not empty %}
-        <p>{{ socialNetwork }}</p>
-    {% else %}
-        <p>Ajouter un réseaux social</p>
-    {% endif %}
-
-    {# A propos du site #}
-    {% if aboutUs is not empty %}
-        <p>{{ aboutUs }}</p>
-    {% else %}
-        <p>Ajouter un texte a propos du site</p>
-    {% endif %}
-
-    {# A propos du développeur #}
-    {% if aboutF is not empty %}
-        <p>{{ aboutF }}</p>
-    {% else %}
-        <p>Ajouter un texte a propos du développeur</p>
-    {% endif %}
-
+    <div id="footerPosition" class="row">
+        {# Contact #}
+        <div class="col-4">
+            <h3>CONTACT</h3>
+            {% if contact is not empty %}
+                <p>{{ contact|nl2br }}</p>
+            {% else %}
+                <p>Ajouter un contact</p>
+            {% endif %}
+        </div>
+        {# Réseaux Sociaux #}
+        <div class="col-4">
+            <h3>FACEBOOK</h3>
+            {% if socialNetwork is not empty %}
+                <p>{{ socialNetwork }}</p>
+            {% else %}
+                <p>Ajouter un réseaux social</p>
+            {% endif %}
+        </div>
+        {# A propos du site #}
+        <div class="col-4">
+            <h3>À PROPOS</h3>
+            {% if aboutUs is not empty %}
+                <p>{{ aboutUs }}</p>
+            {% else %}
+                <p>Ajouter un texte a propos du site</p>
+            {% endif %}
+        </div>
+        {# A propos du développeur #}
+        <div id="aboutF" class="col-12">
+            {% if aboutF is not empty %}
+                <p>{{ aboutF }}</p>
+            {% else %}
+                <p>Ajouter un texte a propos du développeur</p>
+            {% endif %}
+        </div>
+    </div>
 </footer>
 
 

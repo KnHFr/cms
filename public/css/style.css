@@ -1,15 +1,11 @@
-/* HEADER */
 
 body {
     background-color: lemonchiffon;
 }
 
+/* ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// */
 
-
-
-/* #header {
-
-} */
+/* HEADER */                                                         /* HEADER */                                                           /* HEADER */
 
 #headerPicture {
     object-fit:cover;
@@ -71,8 +67,9 @@ body {
     }
 }
 
+/* ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// */
 
-/* MAIN */
+/* MAIN */                                                            /* MAIN */                                                            /* MAIN */
 
 #main {
     position: relative;
@@ -86,7 +83,7 @@ body {
 }
 
 .article h2 {
-    color: floralwhite;
+    /* color: floralwhite; */
     font-size: 2.5rem;
 }
 
@@ -97,13 +94,26 @@ body {
 }
 
 .article p {
-    color: floralwhite;
+    /* color: floralwhite; */
     font-size: 1.25rem;
 }
 
+/* ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// */
 
-/* FOOTER */
+/* FOOTER */                                                        /* FOOTER */                                                        /* FOOTER */
 
 footer {
-    /* display: none; */
+    background-color: #2D2D2D;
+    color: white;
+    padding: 2em 5em 2em 5em;
+    font-size: 0.7em;
+}
+
+#footer h3 {
+    font-size: 1.2em;
+}
+
+#aboutF
+{
+    text-align: center;;
 }
